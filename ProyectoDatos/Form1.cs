@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProyectoDatos
 {
@@ -9,6 +10,7 @@ namespace ProyectoDatos
     {
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
+        private int contador = 0;
 
         public Form1()
         {
@@ -82,28 +84,41 @@ namespace ProyectoDatos
         {
             if (contadorInstrumentos < instrumentos.Length)
             {
-                int id = Convert.ToInt32(textid.Text);
-                string nombre = textnombre.Text;
-                double precio = Convert.ToDouble(textprecio.Text);
-                string color = textcolor.Text;
-
-                MInstrumentos nuevoInstrumento = new MInstrumentos
+                string prueba = Convert.ToString(textprecio.Text);
+                if (prueba != "")
                 {
-                    Id = id,
-                    Nombre = nombre,
-                    Precio = precio,
-                    Color = color
-                };
 
-                instrumentos[contadorInstrumentos] = nuevoInstrumento;
-                contadorInstrumentos++;
+                    string nombre = textnombre.Text;
+                    double precio = Convert.ToDouble(textprecio.Text);
+                    string color = textcolor.Text;
 
-                MostrarInstrumentos();
+                    MInstrumentos nuevoInstrumento = new MInstrumentos
+                    {
+                        Id = ++contador,
+                        Nombre = nombre,
+                        Precio = precio,
+                        Color = color
+                    };
+
+                    instrumentos[contadorInstrumentos] = nuevoInstrumento;
+                    contadorInstrumentos++;
+
+                    textnombre.Text = string.Empty;
+                    textprecio.Text = string.Empty;
+                    textcolor.Text = string.Empty;
+                    MostrarInstrumentos();
+                }
+                else
+                {
+                    MessageBox.Show("El campo precio esta vacio");
+                }
+
             }
-            else
+            else if(contadorInstrumentos > instrumentos.Length) 
             {
                 MessageBox.Show("No se pueden agregar más instrumentos. Límite alcanzado.");
             }
+
         }
 
         private void MostrarInstrumentos()
@@ -113,21 +128,59 @@ namespace ProyectoDatos
             for (int i = 0; i < contadorInstrumentos; i++)
             {
                 dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+
             }
         }
 
         private void ModificarInstrumento()
         {
+            if(dginstrumento.SelectedRows.Count > 0)
+            {
+                int indiceSeleccionado = dginstrumento.SelectedRows[0].Index;
+                string nuevoNombre = textnombre.Text;
+                double nuevoPrecio = Convert.ToDouble(textprecio.Text);
+                string nuevoColor = textcolor.Text;
+
+                instrumentos[indiceSeleccionado].Nombre = nuevoNombre;
+                instrumentos[indiceSeleccionado].Precio = nuevoPrecio;
+                instrumentos[indiceSeleccionado].Color = nuevoColor;
+
+                MostrarInstrumentos();
+
+            }
         }
 
         private void BuscarInstrumento()
         {
+            double precioBuscar = Convert.ToDouble(textbuscar.Text);
+
+            bool encontrado = false;
+
+            // Limpiar el DataGridView
+            dginstrumento.Rows.Clear();
+
+            for (int i = 0; i < contadorInstrumentos; i++)
+            {
+                if (instrumentos[i].Precio == precioBuscar)
+                {
+                    encontrado = true;
+
+                    // Mostrar el instrumento encontrado en el DataGridView
+                    dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                }
+            }
+
+            if (!encontrado)
+            {
+                MessageBox.Show("No se encontraron instrumentos con ese precio.");
+            }
         }
 
         private void EliminarInstrumento()
         {
+            
             int idEliminar = Convert.ToInt32(textelim.Text);
-
+           
             int indiceInstrumento = -1;
 
             // Buscar el índice del instrumento a eliminar en el arreglo
@@ -138,6 +191,7 @@ namespace ProyectoDatos
                     indiceInstrumento = i;
                     break;
                 }
+               
             }
 
             if (indiceInstrumento != -1)
@@ -152,13 +206,29 @@ namespace ProyectoDatos
                 MostrarInstrumentos();
                 MessageBox.Show("Instrumento eliminado correctamente.");
             }
-            else
+            else if (indiceInstrumento != -1) 
             {
                 MessageBox.Show("Instrumento no encontrado.");
             }
+
         }
 
         private void textelim_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textid = new System.Windows.Forms.TextBox();
             this.textnombre = new System.Windows.Forms.TextBox();
             this.textprecio = new System.Windows.Forms.TextBox();
             this.textcolor = new System.Windows.Forms.TextBox();
@@ -42,17 +40,9 @@
             this.dginstrumento = new System.Windows.Forms.DataGridView();
             this.btneliminar = new System.Windows.Forms.Button();
             this.textelim = new System.Windows.Forms.TextBox();
+            this.textbuscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Id";
             // 
             // label2
             // 
@@ -82,14 +72,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Color";
             // 
-            // textid
-            // 
-            this.textid.Location = new System.Drawing.Point(198, 68);
-            this.textid.Name = "textid";
-            this.textid.Size = new System.Drawing.Size(188, 22);
-            this.textid.TabIndex = 4;
-            this.textid.TextChanged += new System.EventHandler(this.textid_TextChanged);
-            // 
             // textnombre
             // 
             this.textnombre.Location = new System.Drawing.Point(198, 136);
@@ -116,9 +98,9 @@
             // 
             // btnbuscar
             // 
-            this.btnbuscar.Location = new System.Drawing.Point(530, 66);
+            this.btnbuscar.Location = new System.Drawing.Point(496, 201);
             this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnbuscar.Size = new System.Drawing.Size(88, 24);
             this.btnbuscar.TabIndex = 8;
             this.btnbuscar.Text = "Buscar";
             this.btnbuscar.UseVisualStyleBackColor = true;
@@ -173,11 +155,20 @@
             this.textelim.TabIndex = 14;
             this.textelim.TextChanged += new System.EventHandler(this.textelim_TextChanged);
             // 
+            // textbuscar
+            // 
+            this.textbuscar.Location = new System.Drawing.Point(459, 231);
+            this.textbuscar.Name = "textbuscar";
+            this.textbuscar.Size = new System.Drawing.Size(188, 22);
+            this.textbuscar.TabIndex = 15;
+            this.textbuscar.TextChanged += new System.EventHandler(this.textbuscar_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 623);
+            this.Controls.Add(this.textbuscar);
             this.Controls.Add(this.textelim);
             this.Controls.Add(this.btneliminar);
             this.Controls.Add(this.dginstrumento);
@@ -187,11 +178,9 @@
             this.Controls.Add(this.textcolor);
             this.Controls.Add(this.textprecio);
             this.Controls.Add(this.textnombre);
-            this.Controls.Add(this.textid);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -202,12 +191,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textid;
         private System.Windows.Forms.TextBox textnombre;
         private System.Windows.Forms.TextBox textprecio;
         private System.Windows.Forms.TextBox textcolor;
@@ -217,6 +203,7 @@
         private System.Windows.Forms.DataGridView dginstrumento;
         private System.Windows.Forms.Button btneliminar;
         private System.Windows.Forms.TextBox textelim;
+        private System.Windows.Forms.TextBox textbuscar;
     }
 }
 

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProyectoDatos.Modelos
 {
+    
     public class MInstrumentos
     {
+        int contador = 0;
         public int Id { get; set; }
         public string Nombre { get; set; }
         public double Precio { get; set; }
