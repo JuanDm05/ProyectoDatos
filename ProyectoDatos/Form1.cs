@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoDatos.Modelos;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,7 +7,7 @@ namespace ProyectoDatos
 {
     public partial class Form1 : Form
     {
-        private InstrumentoMusical[] instrumentos = new InstrumentoMusical[10];
+        private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 
         public Form1()
@@ -86,7 +87,7 @@ namespace ProyectoDatos
                 double precio = Convert.ToDouble(textprecio.Text);
                 string color = textcolor.Text;
 
-                InstrumentoMusical nuevoInstrumento = new InstrumentoMusical
+                MInstrumentos nuevoInstrumento = new MInstrumentos
                 {
                     Id = id,
                     Nombre = nombre,
@@ -162,15 +163,6 @@ namespace ProyectoDatos
 
         }
     }
-    }
+}
 
-    // Clase que representa un instrumento musical
-    public class InstrumentoMusical
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public double Precio { get; set; }
-
-        public string Color {  get; set; }
-    }
 
