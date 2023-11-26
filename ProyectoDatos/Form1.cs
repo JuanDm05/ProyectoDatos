@@ -17,7 +17,7 @@ namespace ProyectoDatos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dginstrumento.Columns.Add("Id", "ID");
+            dginstrumento.Columns.Add("ID", "Id");
             dginstrumento.Columns.Add("Nombre", "Nombre");
             dginstrumento.Columns.Add("Precio", "Precio");
             dginstrumento.Columns.Add("Color", "Color");
@@ -82,14 +82,12 @@ namespace ProyectoDatos
         {
             if (contadorInstrumentos < instrumentos.Length)
             {
-                int id = Convert.ToInt32(textid.Text);
                 string nombre = textnombre.Text;
                 double precio = Convert.ToDouble(textprecio.Text);
                 string color = textcolor.Text;
 
                 MInstrumentos nuevoInstrumento = new MInstrumentos
                 {
-                    Id = id,
                     Nombre = nombre,
                     Precio = precio,
                     Color = color
@@ -112,7 +110,7 @@ namespace ProyectoDatos
 
             for (int i = 0; i < contadorInstrumentos; i++)
             {
-                dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                dginstrumento.Rows.Add(instrumentos[i].GetId, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
             }
         }
 
@@ -133,7 +131,7 @@ namespace ProyectoDatos
             // Buscar el índice del instrumento a eliminar en el arreglo
             for (int i = 0; i < contadorInstrumentos; i++)
             {
-                if (instrumentos[i].Id == idEliminar)
+                if (instrumentos[i].GetId == idEliminar)
                 {
                     indiceInstrumento = i;
                     break;

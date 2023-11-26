@@ -32,7 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textid = new System.Windows.Forms.TextBox();
+            //this.textid = new System.Windows.Forms.TextBox();
             this.textnombre = new System.Windows.Forms.TextBox();
             this.textprecio = new System.Windows.Forms.TextBox();
             this.textcolor = new System.Windows.Forms.TextBox();
@@ -83,13 +83,13 @@
             this.label4.Text = "Color";
             // 
             // textid
-            // 
+            /* 
             this.textid.Location = new System.Drawing.Point(198, 68);
             this.textid.Name = "textid";
             this.textid.Size = new System.Drawing.Size(188, 22);
             this.textid.TabIndex = 4;
             this.textid.TextChanged += new System.EventHandler(this.textid_TextChanged);
-            // 
+            */ 
             // textnombre
             // 
             this.textnombre.Location = new System.Drawing.Point(198, 136);
@@ -187,7 +187,7 @@
             this.Controls.Add(this.textcolor);
             this.Controls.Add(this.textprecio);
             this.Controls.Add(this.textnombre);
-            this.Controls.Add(this.textid);
+            //this.Controls.Add(this.textid);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -207,7 +207,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textid;
+        //private System.Windows.Forms.TextBox textid;
         private System.Windows.Forms.TextBox textnombre;
         private System.Windows.Forms.TextBox textprecio;
         private System.Windows.Forms.TextBox textcolor;
