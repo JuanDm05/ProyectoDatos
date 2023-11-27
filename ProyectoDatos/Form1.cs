@@ -2,12 +2,14 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProyectoDatos
 {
     public partial class Form1 : Form
     {
         int IdClass = 0;
+        int buscar = 0;
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 
@@ -83,22 +85,45 @@ namespace ProyectoDatos
         {
             if (contadorInstrumentos < instrumentos.Length)
             {
-                string nombre = textnombre.Text;
-                double precio = Convert.ToDouble(textprecio.Text);
-                string color = textcolor.Text;
+                string [] temp = new string[3];
+                temp[0] = textnombre.Text;
+                temp[1] = textprecio.Text;
+                temp[2] = textcolor.Text;
 
-                MInstrumentos nuevoInstrumento = new MInstrumentos
+                if (temp[0] == "" || temp[1] == "" || temp[2] == "")
                 {
-                    Id = IdClass++,
-                    Nombre = nombre,
-                    Precio = precio,
-                    Color = color
-                };
+                    MessageBox.Show("No deje ningun espacio vacio");
+                }
+                else
+                {
+                    try
+                    { 
 
-                instrumentos[contadorInstrumentos] = nuevoInstrumento;
-                contadorInstrumentos++;
+                    string nombre = textnombre.Text;
+                    double precio = Convert.ToDouble(textprecio.Text);
+                    string color = textcolor.Text;
 
-                MostrarInstrumentos();
+                    MInstrumentos nuevoInstrumento = new MInstrumentos
+                    {
+                        Id = ++IdClass,
+                        Nombre = nombre,
+                        Precio = precio,
+                        Color = color
+                    };
+
+                    instrumentos[contadorInstrumentos] = nuevoInstrumento;
+                    contadorInstrumentos++;
+
+                    textnombre.Text = string.Empty;
+                    textprecio.Text = string.Empty;
+                    textcolor.Text = string.Empty;
+                        MostrarInstrumentos();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
             else
             {
@@ -118,49 +143,160 @@ namespace ProyectoDatos
 
         private void ModificarInstrumento()
         {
-        }
 
+            //int idModificar = IdClass;
+            string Excepcion = textmodificar.Text;
+            if (Excepcion == "")
+            {
+                MessageBox.Show("Ingrese una id");
+            }
+            else
+            {
+
+                string temp = textmodificar.Text;
+                buscar = Convert.ToInt32(temp);
+                int idModificar = buscar;
+                string modificar = Convert.ToString(IdClass);
+
+                bool encontrado = false;
+                // Buscar el índice del instrumento a modificar en el arreglo
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    if (instrumentos[i].Id == idModificar)
+                    {
+
+                        // Actualizar el resto de la información del instrumento
+                        instrumentos[i].Nombre = textnombre.Text;
+                        instrumentos[i].Precio = Convert.ToDouble(textprecio.Text);
+                        instrumentos[i].Color = textcolor.Text;
+
+                        encontrado = true;
+                        break;
+                    }
+                }
+
+                if (encontrado)
+                {
+                    textmodificar.Text = string.Empty;
+                    MostrarInstrumentos();
+
+                    MessageBox.Show("Instrumento modificado correctamente.");
+                }
+                else
+                {
+                    textmodificar.Text = string.Empty;
+                    MessageBox.Show("Instrumento no encontrado.");
+                }
+            }
+        }
         private void BuscarInstrumento()
         {
+            string buscar1 = textbuscar.Text;
+            if (buscar1 == "")
+            {
+                MessageBox.Show("Ingrese Precio a buscar");
+            }
+            else
+            {
+                double precioBuscar = Convert.ToDouble(textbuscar.Text);
+
+
+                bool encontrado = false;
+
+                // Limpiar el DataGridView
+                dginstrumento.Rows.Clear();
+
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    if (instrumentos[i].Precio == precioBuscar)
+                    {
+                        encontrado = true;
+                        textbuscar.Text = string.Empty;
+
+                        // Mostrar el instrumento encontrado en el DataGridView
+                        dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                    }
+                }
+
+                if (!encontrado)
+                {
+                    textbuscar.Text = string.Empty;
+                    MessageBox.Show("No se encontraron instrumentos con ese precio.");
+                }
+            }
         }
 
         private void EliminarInstrumento()
         {
-            int idEliminar = Convert.ToInt32(textelim.Text);
-
-            int indiceInstrumento = -1;
-
-            // Buscar el índice del instrumento a eliminar en el arreglo
-            for (int i = 0; i < contadorInstrumentos; i++)
+            string eliminarPorId = textelim.Text;
+            if (eliminarPorId == "")
             {
-                if (instrumentos[i].Id == idEliminar)
-                {
-                    indiceInstrumento = i;
-                    break;
-                }
-            }
-
-            if (indiceInstrumento != -1)
-            {
-                // Mover los elementos siguientes para eliminar el instrumento
-                for (int i = indiceInstrumento; i < contadorInstrumentos - 1; i++)
-                {
-                    instrumentos[i] = instrumentos[i + 1];
-                }
-
-                contadorInstrumentos--;
-                MostrarInstrumentos();
-                MessageBox.Show("Instrumento eliminado correctamente.");
+                MessageBox.Show("Ingrese un Id para eliminar");
             }
             else
             {
-                MessageBox.Show("Instrumento no encontrado.");
+
+
+                int idEliminar = Convert.ToInt32(textelim.Text);
+
+                int indiceInstrumento = -1;
+
+                // Buscar el índice del instrumento a eliminar en el arreglo
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    if (instrumentos[i].Id == idEliminar)
+                    {
+                        indiceInstrumento = i;
+                        break;
+                    }
+                }
+
+                if (indiceInstrumento != -1)
+                {
+                    // Mover los elementos siguientes para eliminar el instrumento
+                    for (int i = indiceInstrumento; i < contadorInstrumentos - 1; i++)
+                    {
+                        instrumentos[i] = instrumentos[i + 1];
+                    }
+
+                    contadorInstrumentos--;
+                    MostrarInstrumentos();
+                    textelim.Text = string.Empty;
+                    MessageBox.Show("Instrumento eliminado correctamente.");
+                }
+                else
+                {
+                    textelim.Text = string.Empty;
+                    MessageBox.Show("Instrumento no encontrado.");
+                }
             }
         }
 
         private void textelim_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textmodificar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void irlistas_Click(object sender, EventArgs e)
+        {
+            ListasEnlazadas listas = new ListasEnlazadas();
+            listas.Show();
+            
         }
     }
 }
