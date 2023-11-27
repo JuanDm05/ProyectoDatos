@@ -7,6 +7,7 @@ namespace ProyectoDatos
 {
     public partial class Form1 : Form
     {
+        int IdClass = 0;
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 
@@ -88,6 +89,7 @@ namespace ProyectoDatos
 
                 MInstrumentos nuevoInstrumento = new MInstrumentos
                 {
+                    Id = IdClass++,
                     Nombre = nombre,
                     Precio = precio,
                     Color = color
@@ -110,7 +112,7 @@ namespace ProyectoDatos
 
             for (int i = 0; i < contadorInstrumentos; i++)
             {
-                dginstrumento.Rows.Add(instrumentos[i].GetId, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
             }
         }
 
@@ -131,7 +133,7 @@ namespace ProyectoDatos
             // Buscar el índice del instrumento a eliminar en el arreglo
             for (int i = 0; i < contadorInstrumentos; i++)
             {
-                if (instrumentos[i].GetId == idEliminar)
+                if (instrumentos[i].Id == idEliminar)
                 {
                     indiceInstrumento = i;
                     break;

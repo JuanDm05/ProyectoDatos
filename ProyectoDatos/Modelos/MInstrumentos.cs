@@ -8,12 +8,7 @@ namespace ProyectoDatos.Modelos
 {
     public class MInstrumentos
     {
-        private int Id = 0;
-
-        public int GetId
-        {
-            get { return ++Id; }
-        }
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public double Precio { get; set; }
         public string Color {  get; set; }
