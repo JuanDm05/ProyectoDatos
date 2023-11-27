@@ -7,6 +7,7 @@ namespace ProyectoDatos
 {
     public partial class Form1 : Form
     {
+        int IdClass = 0;
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 
@@ -17,7 +18,7 @@ namespace ProyectoDatos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dginstrumento.Columns.Add("Id", "ID");
+            dginstrumento.Columns.Add("ID", "Id");
             dginstrumento.Columns.Add("Nombre", "Nombre");
             dginstrumento.Columns.Add("Precio", "Precio");
             dginstrumento.Columns.Add("Color", "Color");
@@ -82,14 +83,13 @@ namespace ProyectoDatos
         {
             if (contadorInstrumentos < instrumentos.Length)
             {
-                int id = Convert.ToInt32(textid.Text);
                 string nombre = textnombre.Text;
                 double precio = Convert.ToDouble(textprecio.Text);
                 string color = textcolor.Text;
 
                 MInstrumentos nuevoInstrumento = new MInstrumentos
                 {
-                    Id = id,
+                    Id = IdClass++,
                     Nombre = nombre,
                     Precio = precio,
                     Color = color
