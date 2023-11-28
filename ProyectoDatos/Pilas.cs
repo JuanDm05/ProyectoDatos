@@ -106,5 +106,10 @@ namespace ProyectoDatos
         {
 
         }
+
+        private void Pilas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

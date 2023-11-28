@@ -275,6 +275,7 @@
             this.Controls.Add(this.label2);
             this.Name = "Pilas";
             this.Text = "Pilas";
+            this.Load += new System.EventHandler(this.Pilas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
