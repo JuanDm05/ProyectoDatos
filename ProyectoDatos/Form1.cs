@@ -649,5 +649,10 @@ namespace ProyectoDatos
         MessageBox.Show("Hubo un error al ordenar los instrumentos: " + ex.Message);
     }
 }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
