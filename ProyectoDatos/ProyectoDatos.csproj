@@ -52,11 +52,22 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Listas.cs" />
+    <Compile Include="ListasEnlazadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListasEnlazadas.Designer.cs">
+      <DependentUpon>ListasEnlazadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\MInstrumentos.cs" />
+    <Compile Include="Nodo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListasEnlazadas.resx">
+      <DependentUpon>ListasEnlazadas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
