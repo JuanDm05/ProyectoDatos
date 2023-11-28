@@ -128,7 +128,108 @@ namespace ProyectoDatos
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
+            double precioABuscar;
+            if (!double.TryParse(textbuscar.Text, out precioABuscar))
+            {
+                MessageBox.Show("Ingrese un precio válido para buscar.");
+                return;
+            }
 
+            BuscarPorPrecio(precioABuscar);
+        }
+    
+
+        private void textbuscar_TextChanged(object sender, EventArgs e)
+        {
+        }
+    
+        private void BuscarPorPrecio(double precioABuscar)
+        {
+            dginstrumento.Rows.Clear();
+
+            Nodo actual = lista.Primero;
+            bool encontrado = false;
+
+            while (actual != null)
+            {
+                if (actual.Datos.Precio == precioABuscar)
+                {
+                    dginstrumento.Rows.Add(actual.Datos.Id, actual.Datos.Nombre, actual.Datos.Precio, actual.Datos.Color);
+                    encontrado = true;
+                }
+                actual = actual.Siguiente;
+            }
+
+            if (!encontrado)
+            {
+                MessageBox.Show("No se encontraron elementos con el precio indicado.");
+            }
+        }
+     
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Decendente_Click(object sender, EventArgs e)
+        {
+            OrdenarPorPrecioDescendente();
+            MostrarEnDataGridView();
+        }
+        public void OrdenarPorPrecioDescendente()
+        {
+            Nodo actual = lista.Primero;
+
+            while (actual != null)
+            {
+                Nodo siguiente = actual.Siguiente;
+
+                while (siguiente != null)
+                {
+                    if (actual.Datos.Precio < siguiente.Datos.Precio)
+                    {
+                        // Intercambiar los datos
+                        MInstrumentos temp = actual.Datos;
+                        actual.Datos = siguiente.Datos;
+                        siguiente.Datos = temp;
+                    }
+
+                    siguiente = siguiente.Siguiente;
+                }
+
+                actual = actual.Siguiente;
+            }
+        }
+        public void OrdenarPorPrecioAscendente()
+        {
+            Nodo actual = lista.Primero;
+
+            while (actual != null)
+            {
+                Nodo siguiente = actual.Siguiente;
+
+                while (siguiente != null)
+                {
+                    if (actual.Datos.Precio > siguiente.Datos.Precio)
+                    {
+                        // Intercambiar los datos
+                        MInstrumentos temp = actual.Datos;
+                        actual.Datos = siguiente.Datos;
+                        siguiente.Datos = temp;
+                    }
+
+                    siguiente = siguiente.Siguiente;
+                }
+
+                actual = actual.Siguiente;
+            }
+        }
+
+        private void Ascendente_Click(object sender, EventArgs e)
+        {
+            OrdenarPorPrecioAscendente();
+            MostrarEnDataGridView();
         }
     }
 }

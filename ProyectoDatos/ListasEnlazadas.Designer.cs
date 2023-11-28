@@ -43,6 +43,8 @@
             this.btnguardar = new System.Windows.Forms.Button();
             this.textbuscar = new System.Windows.Forms.TextBox();
             this.btnbuscar = new System.Windows.Forms.Button();
+            this.Decendente = new System.Windows.Forms.Button();
+            this.Ascendente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -169,14 +171,15 @@
             // 
             // textbuscar
             // 
-            this.textbuscar.Location = new System.Drawing.Point(554, 104);
+            this.textbuscar.Location = new System.Drawing.Point(563, 83);
             this.textbuscar.Name = "textbuscar";
             this.textbuscar.Size = new System.Drawing.Size(147, 22);
             this.textbuscar.TabIndex = 23;
+            this.textbuscar.TextChanged += new System.EventHandler(this.textbuscar_TextChanged);
             // 
             // btnbuscar
             // 
-            this.btnbuscar.Location = new System.Drawing.Point(579, 65);
+            this.btnbuscar.Location = new System.Drawing.Point(588, 44);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(75, 23);
             this.btnbuscar.TabIndex = 22;
@@ -184,11 +187,33 @@
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
+            // Decendente
+            // 
+            this.Decendente.Location = new System.Drawing.Point(571, 150);
+            this.Decendente.Name = "Decendente";
+            this.Decendente.Size = new System.Drawing.Size(139, 26);
+            this.Decendente.TabIndex = 24;
+            this.Decendente.Text = "Decendente";
+            this.Decendente.UseVisualStyleBackColor = true;
+            this.Decendente.Click += new System.EventHandler(this.Decendente_Click);
+            // 
+            // Ascendente
+            // 
+            this.Ascendente.Location = new System.Drawing.Point(571, 196);
+            this.Ascendente.Name = "Ascendente";
+            this.Ascendente.Size = new System.Drawing.Size(139, 26);
+            this.Ascendente.TabIndex = 25;
+            this.Ascendente.Text = "Ascendente";
+            this.Ascendente.UseVisualStyleBackColor = true;
+            this.Ascendente.Click += new System.EventHandler(this.Ascendente_Click);
+            // 
             // ListasEnlazadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Ascendente);
+            this.Controls.Add(this.Decendente);
             this.Controls.Add(this.textbuscar);
             this.Controls.Add(this.btnbuscar);
             this.Controls.Add(this.textmodificar);
@@ -230,5 +255,7 @@
         private System.Windows.Forms.Button btnguardar;
         private System.Windows.Forms.TextBox textbuscar;
         private System.Windows.Forms.Button btnbuscar;
+        private System.Windows.Forms.Button Decendente;
+        private System.Windows.Forms.Button Ascendente;
     }
 }
