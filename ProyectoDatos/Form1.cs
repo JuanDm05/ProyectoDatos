@@ -119,7 +119,9 @@ namespace ProyectoDatos
                     DataGridViewRow row = dginstrumento.Rows[rowIndex];
 
                     // Guardar los valores originales antes de modificar
+                    
                     string oldNombre = row.Cells["Nombre"].Value.ToString();
+
                     double oldPrecio = Convert.ToDouble(row.Cells["Precio"].Value);
                     string oldColor = row.Cells["Color"].Value.ToString();
 
