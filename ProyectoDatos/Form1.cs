@@ -1,6 +1,7 @@
 ﻿using ProyectoDatos.Modelos;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -65,27 +66,209 @@ namespace ProyectoDatos
         {
             AgregarInstrumento();
         }
+        private void ModificarInstrumento()
+        {
+            try
+            {
+                int idModificar = Convert.ToInt32(textmodificar.Text);
+
+                int indiceModificar = -1;
+
+                // Buscar el índice del instrumento a modificar en el arreglo
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    if (instrumentos[i].Id == idModificar)
+                    {
+                        indiceModificar = i;
+                        break;
+                    }
+                }
+
+                if (indiceModificar != -1)
+                {
+                    // Actualizar el resto de la información del instrumento
+                    instrumentos[indiceModificar].Nombre = textnombre.Text;
+                    instrumentos[indiceModificar].Precio = Convert.ToDouble(textprecio.Text);
+                    instrumentos[indiceModificar].Color = textcolor.Text;
+
+                    textmodificar.Text = string.Empty;
+                    MostrarInstrumentos();
+
+                    MessageBox.Show("Instrumento modificado correctamente.");
+                }
+                else
+                {
+                    textmodificar.Text = string.Empty;
+                    MessageBox.Show("Instrumento no encontrado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error en la sección Modificar: " + ex.Message);
+            }
+        }
 
         private void btnmodificar_Click(object sender, EventArgs e)
         {
-            ModificarInstrumento();
+            if (dginstrumento.SelectedCells.Count > 0)
+            {
+                int rowIndex = dginstrumento.SelectedCells[0].RowIndex;
+
+                try
+                {
+
+                        string[] temp = new string[3];
+                        temp[0] = textnombre.Text;
+                        temp[1] = textprecio.Text;
+                        temp[2] = textcolor.Text;
+
+                    if (temp[0] == "" || temp[1] == "" || temp[2] == "")
+                        {
+                        MessageBox.Show("No deje ningun espacio vacio");
+                    }
+                    else
+                    {
+
+                        DataGridViewRow row = dginstrumento.Rows[rowIndex];
+
+                        // Guardar los valores originales antes de modificar
+
+                        string oldNombre = row.Cells["Nombre"].Value.ToString();
+                        double oldPrecio = Convert.ToDouble(row.Cells["Precio"].Value);
+                        string oldColor = row.Cells["Color"].Value.ToString();
+
+                        // Modificar la fila en el DataGridView
+                        row.Cells["Nombre"].Value = textnombre.Text;
+                        row.Cells["Precio"].Value = textprecio.Text;
+                        row.Cells["Color"].Value = textcolor.Text;
+
+                        MessageBox.Show("Instrumento modificado correctamente.");
+                        textnombre.Text = string.Empty;
+                        textprecio.Text = string.Empty;
+                        textcolor.Text = string.Empty;
+                        // Verificar si los datos clave han cambiado
+                        if (oldNombre != textnombre.Text || oldPrecio != Convert.ToDouble(textprecio.Text) || oldColor != textcolor.Text)
+                        {
+                            // No se realiza la eliminación aquí
+                            // EliminarInstrumento(oldNombre, oldPrecio, oldColor);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error al modificar el instrumento: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila para modificar.");
+            }
         }
+        private void EliminarInstrumento(string nombre, double precio, string color)
+        {
+            try
+            {
+                bool encontrado = false;
+
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    if (instrumentos[i].Nombre == nombre && instrumentos[i].Precio == precio && instrumentos[i].Color == color)
+                    {
+                        encontrado = true;
+
+                        for (int j = i; j < contadorInstrumentos - 1; j++)
+                        {
+                            instrumentos[j] = instrumentos[j + 1];
+                        }
+
+                        contadorInstrumentos--;
+                        MostrarInstrumentos();
+                        MessageBox.Show("Instrumento eliminado correctamente.");
+                        break;
+                    }
+                }
+
+                if (!encontrado)
+                {
+                    MessageBox.Show("Instrumento no encontrado para eliminar.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al eliminar el instrumento: " + ex.Message);
+            }
+        }
+
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            BuscarInstrumento();
+            if (Nombre.Checked)
+            {
+                BuscarPorNombre();
+            }
+            else if (precio.Checked)
+            {
+                BuscarInstrumento();
+            }
+            else
+            {
+                BuscarPorColor();
+            }
         }
 
         private void btneliminar_Click(object sender, EventArgs e)
         {
-            EliminarInstrumento();
+            if (dginstrumento.SelectedCells.Count > 0)
+            {
+                int rowIndex = dginstrumento.SelectedCells[0].RowIndex;
+
+                try
+                {
+                    int idEliminar = Convert.ToInt32(dginstrumento.Rows[rowIndex].Cells["ID"].Value);
+
+                    int indiceInstrumento = -1;
+
+                    for (int i = 0; i < contadorInstrumentos; i++)
+                    {
+                        if (instrumentos[i].Id == idEliminar)
+                        {
+                            indiceInstrumento = i;
+                            break;
+                        }
+                    }
+
+                    if (indiceInstrumento != -1)
+                    {
+                        for (int i = indiceInstrumento; i < contadorInstrumentos - 1; i++)
+                        {
+                            instrumentos[i] = instrumentos[i + 1];
+                        }
+
+                        contadorInstrumentos--;
+                        MostrarInstrumentos();
+                        MessageBox.Show("Instrumento eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Instrumento no encontrado.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error al eliminar el instrumento: " + ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila para eliminar.");
+            }
         }
 
         private void AgregarInstrumento()
         {
             if (contadorInstrumentos < instrumentos.Length)
             {
-                string [] temp = new string[3];
+                string[] temp = new string[3];
                 temp[0] = textnombre.Text;
                 temp[1] = textprecio.Text;
                 temp[2] = textcolor.Text;
@@ -97,31 +280,31 @@ namespace ProyectoDatos
                 else
                 {
                     try
-                    { 
-
-                    string nombre = textnombre.Text;
-                    double precio = Convert.ToDouble(textprecio.Text);
-                    string color = textcolor.Text;
-
-                    MInstrumentos nuevoInstrumento = new MInstrumentos
                     {
-                        Id = ++IdClass,
-                        Nombre = nombre,
-                        Precio = precio,
-                        Color = color
-                    };
 
-                    instrumentos[contadorInstrumentos] = nuevoInstrumento;
-                    contadorInstrumentos++;
+                        string nombre = textnombre.Text;
+                        double precio = Convert.ToDouble(textprecio.Text);
+                        string color = textcolor.Text;
 
-                    textnombre.Text = string.Empty;
-                    textprecio.Text = string.Empty;
-                    textcolor.Text = string.Empty;
+                        MInstrumentos nuevoInstrumento = new MInstrumentos
+                        {
+                            Id = ++IdClass,
+                            Nombre = nombre,
+                            Precio = precio,
+                            Color = color
+                        };
+
+                        instrumentos[contadorInstrumentos] = nuevoInstrumento;
+                        contadorInstrumentos++;
+
+                        textnombre.Text = string.Empty;
+                        textprecio.Text = string.Empty;
+                        textcolor.Text = string.Empty;
                         MostrarInstrumentos();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show("Hubo un error en la sección precio: " + ex.Message);
                     }
                 }
             }
@@ -141,137 +324,104 @@ namespace ProyectoDatos
             }
         }
 
-        private void ModificarInstrumento()
-        {
-
-            //int idModificar = IdClass;
-            string Excepcion = textmodificar.Text;
-            if (Excepcion == "")
-            {
-                MessageBox.Show("Ingrese una id");
-            }
-            else
-            {
-
-                string temp = textmodificar.Text;
-                buscar = Convert.ToInt32(temp);
-                int idModificar = buscar;
-                string modificar = Convert.ToString(IdClass);
-
-                bool encontrado = false;
-                // Buscar el índice del instrumento a modificar en el arreglo
-                for (int i = 0; i < contadorInstrumentos; i++)
-                {
-                    if (instrumentos[i].Id == idModificar)
-                    {
-
-                        // Actualizar el resto de la información del instrumento
-                        instrumentos[i].Nombre = textnombre.Text;
-                        instrumentos[i].Precio = Convert.ToDouble(textprecio.Text);
-                        instrumentos[i].Color = textcolor.Text;
-
-                        encontrado = true;
-                        break;
-                    }
-                }
-
-                if (encontrado)
-                {
-                    textmodificar.Text = string.Empty;
-                    MostrarInstrumentos();
-
-                    MessageBox.Show("Instrumento modificado correctamente.");
-                }
-                else
-                {
-                    textmodificar.Text = string.Empty;
-                    MessageBox.Show("Instrumento no encontrado.");
-                }
-            }
-        }
+       
         private void BuscarInstrumento()
         {
-            string buscar1 = textbuscar.Text;
-            if (buscar1 == "")
+            try
             {
-                MessageBox.Show("Ingrese Precio a buscar");
-            }
-            else
-            {
-                double precioBuscar = Convert.ToDouble(textbuscar.Text);
-
-
-                bool encontrado = false;
-
-                // Limpiar el DataGridView
-                dginstrumento.Rows.Clear();
-
-                for (int i = 0; i < contadorInstrumentos; i++)
+                string buscar1 = textbuscar.Text;
+                if (buscar1 == "")
                 {
-                    if (instrumentos[i].Precio == precioBuscar)
-                    {
-                        encontrado = true;
-                        textbuscar.Text = string.Empty;
-
-                        // Mostrar el instrumento encontrado en el DataGridView
-                        dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
-                    }
-                }
-
-                if (!encontrado)
-                {
-                    textbuscar.Text = string.Empty;
-                    MessageBox.Show("No se encontraron instrumentos con ese precio.");
-                }
-            }
-        }
-
-        private void EliminarInstrumento()
-        {
-            string eliminarPorId = textelim.Text;
-            if (eliminarPorId == "")
-            {
-                MessageBox.Show("Ingrese un Id para eliminar");
-            }
-            else
-            {
-
-
-                int idEliminar = Convert.ToInt32(textelim.Text);
-
-                int indiceInstrumento = -1;
-
-                // Buscar el índice del instrumento a eliminar en el arreglo
-                for (int i = 0; i < contadorInstrumentos; i++)
-                {
-                    if (instrumentos[i].Id == idEliminar)
-                    {
-                        indiceInstrumento = i;
-                        break;
-                    }
-                }
-
-                if (indiceInstrumento != -1)
-                {
-                    // Mover los elementos siguientes para eliminar el instrumento
-                    for (int i = indiceInstrumento; i < contadorInstrumentos - 1; i++)
-                    {
-                        instrumentos[i] = instrumentos[i + 1];
-                    }
-
-                    contadorInstrumentos--;
-                    MostrarInstrumentos();
-                    textelim.Text = string.Empty;
-                    MessageBox.Show("Instrumento eliminado correctamente.");
+                    MessageBox.Show("Ingrese Precio a buscar");
                 }
                 else
                 {
-                    textelim.Text = string.Empty;
-                    MessageBox.Show("Instrumento no encontrado.");
+                    double precioBuscar = Convert.ToDouble(textbuscar.Text);
+
+
+                    bool encontrado = false;
+
+                    // Limpiar el DataGridView
+                    dginstrumento.Rows.Clear();
+
+                    for (int i = 0; i < contadorInstrumentos; i++)
+                    {
+                        if (instrumentos[i].Precio == precioBuscar)
+                        {
+                            encontrado = true;
+                            textbuscar.Text = string.Empty;
+
+                            // Mostrar el instrumento encontrado en el DataGridView
+                            dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                        }
+                    }
+
+                    if (!encontrado)
+                    {
+                        textbuscar.Text = string.Empty;
+                        MessageBox.Show("No se encontraron instrumentos con ese precio.");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error en la sección Buscar: " + ex.Message);
+            }
+
         }
 
+        //private void EliminarInstrumento()
+        //{
+        //    string eliminarPorId = textelim.Text;
+        //    if (eliminarPorId == "")
+        //    {
+        //        MessageBox.Show("Ingrese un Id para eliminar");
+        //    }
+        //    else
+        //    {
+
+        //        try
+        //        {
+        //            int idEliminar = Convert.ToInt32(textelim.Text);
+
+        //            int indiceInstrumento = -1;
+
+        //            // Buscar el índice del instrumento a eliminar en el arreglo
+        //            for (int i = 0; i < contadorInstrumentos; i++)
+        //            {
+        //                if (instrumentos[i].Id == idEliminar)
+        //                {
+        //                    indiceInstrumento = i;
+        //                    break;
+        //                }
+        //            }
+
+        //            if (indiceInstrumento != -1)
+        //            {
+        //                // Mover los elementos siguientes para eliminar el instrumento
+        //                for (int i = indiceInstrumento; i < contadorInstrumentos - 1; i++)
+        //                {
+        //                    instrumentos[i] = instrumentos[i + 1];
+        //                }
+
+        //                contadorInstrumentos--;
+        //                MostrarInstrumentos();
+        //                textelim.Text = string.Empty;
+        //                MessageBox.Show("Instrumento eliminado correctamente.");
+        //            }
+        //            else
+        //            {
+        //                textelim.Text = string.Empty;
+        //                MessageBox.Show("Instrumento no encontrado.");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show("Hubo un error en la sección eliminar: " + ex.Message);
+        //        }
+        //    }
+        //}
+    
         private void textelim_TextChanged(object sender, EventArgs e)
         {
 
@@ -296,9 +446,208 @@ namespace ProyectoDatos
         {
             ListasEnlazadas listas = new ListasEnlazadas();
             listas.Show();
-            
+
+        }
+
+        private void Limpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+        }
+
+        private void Mostrar_Click(object sender, EventArgs e)
+        {
+            MostrarInstrumentos();
+        }
+        private void LimpiarCampos()
+        {
+            textnombre.Text = string.Empty;
+            textprecio.Text = string.Empty;
+            textcolor.Text = string.Empty;
+            textbuscar.Text = string.Empty;
+
+            // Limpiar la tabla
+            dginstrumento.Rows.Clear();
+
+            // Restablecer el arreglo de instrumentos y el contador
+            instrumentos = new MInstrumentos[10];
+            contadorInstrumentos = 0;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Nombre_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void BuscarPorNombre()
+        {
+            try
+            {
+                string nombreBuscar = textbuscar.Text;
+
+                if (string.IsNullOrEmpty(nombreBuscar))
+                {
+                    MessageBox.Show("Ingrese un nombre para buscar.");
+                }
+                else
+                {
+                    bool encontrado = false;
+
+                    // Limpiar el DataGridView
+                    dginstrumento.Rows.Clear();
+
+                    for (int i = 0; i < contadorInstrumentos; i++)
+                    {
+                        if (instrumentos[i].Nombre.ToLower() == nombreBuscar.ToLower())
+                        {
+                            encontrado = true;
+
+                            // Mostrar el instrumento encontrado en el DataGridView
+                            dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                        }
+                    }
+
+                    if (!encontrado)
+                    {
+                        MessageBox.Show("No se encontraron instrumentos con ese nombre.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error en la búsqueda por nombre: " + ex.Message);
+            }
+        }
+
+        private void precio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void color_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void BuscarPorColor()
+        {
+            try
+            {
+                string colorBuscar = textbuscar.Text; // Obtener el color a buscar desde el campo de texto
+
+                if (string.IsNullOrEmpty(colorBuscar))
+                {
+                    MessageBox.Show("Ingrese un color para buscar.");
+                }
+                else
+                {
+                    bool encontrado = false;
+
+                    // Limpiar el DataGridView
+                    dginstrumento.Rows.Clear();
+
+                    for (int i = 0; i < contadorInstrumentos; i++)
+                    {
+                        if (instrumentos[i].Color.ToLower() == colorBuscar.ToLower())
+                        {
+                            encontrado = true;
+
+                            // Mostrar el instrumento encontrado en el DataGridView
+                            dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                        }
+                    }
+
+                    if (!encontrado)
+                    {
+                        MessageBox.Show("No se encontraron instrumentos con ese color.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error en la búsqueda por color: " + ex.Message);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+
+        }
+
+        private void Descendente_Click(object sender, EventArgs e)
+        {
+            OrdenarInstrumentosPorPrecioDescendente();
+        }
+        private void OrdenarInstrumentosPorPrecioDescendente()
+        {
+            try
+            {
+                for (int i = 0; i < contadorInstrumentos - 1; i++)
+                {
+                    for (int j = i + 1; j < contadorInstrumentos; j++)
+                    {
+                        if (instrumentos[i].Precio < instrumentos[j].Precio)
+                        {
+                            MInstrumentos temp = instrumentos[i];
+                            instrumentos[i] = instrumentos[j];
+                            instrumentos[j] = temp;
+                        }
+                    }
+                }
+
+                // Limpiar el DataGridView
+                dginstrumento.Rows.Clear();
+
+                // Mostrar los instrumentos ordenados en el DataGridView
+                for (int i = 0; i < contadorInstrumentos; i++)
+                {
+                    dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error al ordenar los instrumentos: " + ex.Message);
+            }
+        }
+
+        private void Ascendnte_Click(object sender, EventArgs e)
+        {
+            OrdenarInstrumentosPorPrecioAscendente();
+        }
+        private void OrdenarInstrumentosPorPrecioAscendente()
+{
+    try
+    {
+        for (int i = 0; i < contadorInstrumentos - 1; i++)
+        {
+            for (int j = i + 1; j < contadorInstrumentos; j++)
+            {
+                if (instrumentos[i].Precio > instrumentos[j].Precio)
+                {
+                    MInstrumentos temp = instrumentos[i];
+                    instrumentos[i] = instrumentos[j];
+                    instrumentos[j] = temp;
+                }
+            }
+        }
+
+        // Limpiar el DataGridView
+        dginstrumento.Rows.Clear();
+
+        // Mostrar los instrumentos ordenados en el DataGridView
+        for (int i = 0; i < contadorInstrumentos; i++)
+        {
+            dginstrumento.Rows.Add(instrumentos[i].Id, instrumentos[i].Nombre, instrumentos[i].Precio, instrumentos[i].Color);
         }
     }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Hubo un error al ordenar los instrumentos: " + ex.Message);
+    }
 }
-
-
+    }
+}
