@@ -116,31 +116,43 @@ namespace ProyectoDatos
 
                 try
                 {
-                    DataGridViewRow row = dginstrumento.Rows[rowIndex];
 
-                    // Guardar los valores originales antes de modificar
-                    
-                    string oldNombre = row.Cells["Nombre"].Value.ToString();
+                        string[] temp = new string[3];
+                        temp[0] = textnombre.Text;
+                        temp[1] = textprecio.Text;
+                        temp[2] = textcolor.Text;
 
-                    double oldPrecio = Convert.ToDouble(row.Cells["Precio"].Value);
-                    string oldColor = row.Cells["Color"].Value.ToString();
+                    if (temp[0] == "" || temp[1] == "" || temp[2] == "")
+                        {
+                        MessageBox.Show("No deje ningun espacio vacio");
+                    }
+                    else
+                    {
 
-                    // Modificar la fila en el DataGridView
-                    row.Cells["Nombre"].Value = textnombre.Text;
-                    row.Cells["Precio"].Value = textprecio.Text;
-                    row.Cells["Color"].Value = textcolor.Text;
+                        DataGridViewRow row = dginstrumento.Rows[rowIndex];
 
-                    MessageBox.Show("Instrumento modificado correctamente.");
-                       textnombre.Text = string.Empty;
+                        // Guardar los valores originales antes de modificar
+
+                        string oldNombre = row.Cells["Nombre"].Value.ToString();
+                        double oldPrecio = Convert.ToDouble(row.Cells["Precio"].Value);
+                        string oldColor = row.Cells["Color"].Value.ToString();
+
+                        // Modificar la fila en el DataGridView
+                        row.Cells["Nombre"].Value = textnombre.Text;
+                        row.Cells["Precio"].Value = textprecio.Text;
+                        row.Cells["Color"].Value = textcolor.Text;
+
+                        MessageBox.Show("Instrumento modificado correctamente.");
+                        textnombre.Text = string.Empty;
                         textprecio.Text = string.Empty;
                         textcolor.Text = string.Empty;
-                    // Verificar si los datos clave han cambiado
-                    if (oldNombre != textnombre.Text || oldPrecio != Convert.ToDouble(textprecio.Text) || oldColor != textcolor.Text)
-                    {
-                        // No se realiza la eliminación aquí
-                        // EliminarInstrumento(oldNombre, oldPrecio, oldColor);
+                        // Verificar si los datos clave han cambiado
+                        if (oldNombre != textnombre.Text || oldPrecio != Convert.ToDouble(textprecio.Text) || oldColor != textcolor.Text)
+                        {
+                            // No se realiza la eliminación aquí
+                            // EliminarInstrumento(oldNombre, oldPrecio, oldColor);
+                        }
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -604,7 +616,7 @@ namespace ProyectoDatos
 
         private void Ascendnte_Click(object sender, EventArgs e)
         {
-
+            OrdenarInstrumentosPorPrecioAscendente();
         }
         private void OrdenarInstrumentosPorPrecioAscendente()
 {
