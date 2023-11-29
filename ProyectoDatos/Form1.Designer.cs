@@ -49,24 +49,25 @@
             this.Descendente = new System.Windows.Forms.Button();
             this.Ascendnte = new System.Windows.Forms.Button();
             this.textmodificar = new System.Windows.Forms.TextBox();
+            this.IrPilas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 43);
+            this.label2.Location = new System.Drawing.Point(33, 54);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
+            this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 112);
+            this.label3.Location = new System.Drawing.Point(36, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.Size = new System.Drawing.Size(53, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Precio";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -74,41 +75,45 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 177);
+            this.label4.Location = new System.Drawing.Point(36, 221);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 16);
+            this.label4.Size = new System.Drawing.Size(46, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Color";
             // 
             // textnombre
             // 
-            this.textnombre.Location = new System.Drawing.Point(194, 36);
+            this.textnombre.Location = new System.Drawing.Point(218, 45);
+            this.textnombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textnombre.Name = "textnombre";
-            this.textnombre.Size = new System.Drawing.Size(188, 22);
+            this.textnombre.Size = new System.Drawing.Size(211, 26);
             this.textnombre.TabIndex = 5;
             this.textnombre.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textprecio
             // 
-            this.textprecio.Location = new System.Drawing.Point(194, 106);
+            this.textprecio.Location = new System.Drawing.Point(218, 132);
+            this.textprecio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textprecio.Name = "textprecio";
-            this.textprecio.Size = new System.Drawing.Size(188, 22);
+            this.textprecio.Size = new System.Drawing.Size(211, 26);
             this.textprecio.TabIndex = 6;
             this.textprecio.TextChanged += new System.EventHandler(this.textprecio_TextChanged);
             // 
             // textcolor
             // 
-            this.textcolor.Location = new System.Drawing.Point(194, 171);
+            this.textcolor.Location = new System.Drawing.Point(218, 214);
+            this.textcolor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textcolor.Name = "textcolor";
-            this.textcolor.Size = new System.Drawing.Size(188, 22);
+            this.textcolor.Size = new System.Drawing.Size(211, 26);
             this.textcolor.TabIndex = 7;
             this.textcolor.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // btnbuscar
             // 
-            this.btnbuscar.Location = new System.Drawing.Point(538, 144);
+            this.btnbuscar.Location = new System.Drawing.Point(605, 180);
+            this.btnbuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnbuscar.Size = new System.Drawing.Size(84, 29);
             this.btnbuscar.TabIndex = 8;
             this.btnbuscar.Text = "Buscar";
             this.btnbuscar.UseVisualStyleBackColor = true;
@@ -116,9 +121,10 @@
             // 
             // btnguardar
             // 
-            this.btnguardar.Location = new System.Drawing.Point(36, 321);
+            this.btnguardar.Location = new System.Drawing.Point(40, 401);
+            this.btnguardar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnguardar.Name = "btnguardar";
-            this.btnguardar.Size = new System.Drawing.Size(75, 23);
+            this.btnguardar.Size = new System.Drawing.Size(84, 29);
             this.btnguardar.TabIndex = 9;
             this.btnguardar.Text = "Guardar";
             this.btnguardar.UseVisualStyleBackColor = true;
@@ -126,9 +132,10 @@
             // 
             // btnmodificar
             // 
-            this.btnmodificar.Location = new System.Drawing.Point(183, 321);
+            this.btnmodificar.Location = new System.Drawing.Point(206, 401);
+            this.btnmodificar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnmodificar.Name = "btnmodificar";
-            this.btnmodificar.Size = new System.Drawing.Size(75, 23);
+            this.btnmodificar.Size = new System.Drawing.Size(84, 29);
             this.btnmodificar.TabIndex = 10;
             this.btnmodificar.Text = "Modificar";
             this.btnmodificar.UseVisualStyleBackColor = true;
@@ -137,19 +144,21 @@
             // dginstrumento
             // 
             this.dginstrumento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dginstrumento.Location = new System.Drawing.Point(5, 349);
+            this.dginstrumento.Location = new System.Drawing.Point(6, 436);
+            this.dginstrumento.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dginstrumento.Name = "dginstrumento";
             this.dginstrumento.RowHeadersWidth = 51;
             this.dginstrumento.RowTemplate.Height = 24;
-            this.dginstrumento.Size = new System.Drawing.Size(593, 272);
+            this.dginstrumento.Size = new System.Drawing.Size(667, 340);
             this.dginstrumento.TabIndex = 12;
             this.dginstrumento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dginstrumento_CellContentClick);
             // 
             // btneliminar
             // 
-            this.btneliminar.Location = new System.Drawing.Point(342, 321);
+            this.btneliminar.Location = new System.Drawing.Point(385, 401);
+            this.btneliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btneliminar.Name = "btneliminar";
-            this.btneliminar.Size = new System.Drawing.Size(75, 23);
+            this.btneliminar.Size = new System.Drawing.Size(84, 29);
             this.btneliminar.TabIndex = 13;
             this.btneliminar.Text = "Eliminar";
             this.btneliminar.UseVisualStyleBackColor = true;
@@ -157,17 +166,19 @@
             // 
             // textbuscar
             // 
-            this.textbuscar.Location = new System.Drawing.Point(505, 105);
+            this.textbuscar.Location = new System.Drawing.Point(568, 131);
+            this.textbuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textbuscar.Name = "textbuscar";
-            this.textbuscar.Size = new System.Drawing.Size(147, 22);
+            this.textbuscar.Size = new System.Drawing.Size(165, 26);
             this.textbuscar.TabIndex = 16;
             this.textbuscar.TextChanged += new System.EventHandler(this.textbuscar_TextChanged);
             // 
             // irlistas
             // 
-            this.irlistas.Location = new System.Drawing.Point(505, 206);
+            this.irlistas.Location = new System.Drawing.Point(568, 235);
+            this.irlistas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.irlistas.Name = "irlistas";
-            this.irlistas.Size = new System.Drawing.Size(126, 23);
+            this.irlistas.Size = new System.Drawing.Size(142, 29);
             this.irlistas.TabIndex = 17;
             this.irlistas.Text = "Ir a listas";
             this.irlistas.UseVisualStyleBackColor = true;
@@ -175,9 +186,10 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(582, 277);
+            this.Limpiar.Location = new System.Drawing.Point(655, 346);
+            this.Limpiar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Limpiar.Name = "Limpiar";
-            this.Limpiar.Size = new System.Drawing.Size(101, 29);
+            this.Limpiar.Size = new System.Drawing.Size(114, 36);
             this.Limpiar.TabIndex = 18;
             this.Limpiar.Text = "Limpiar";
             this.Limpiar.UseVisualStyleBackColor = true;
@@ -185,9 +197,10 @@
             // 
             // Mostrar
             // 
-            this.Mostrar.Location = new System.Drawing.Point(443, 277);
+            this.Mostrar.Location = new System.Drawing.Point(498, 346);
+            this.Mostrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Mostrar.Name = "Mostrar";
-            this.Mostrar.Size = new System.Drawing.Size(101, 29);
+            this.Mostrar.Size = new System.Drawing.Size(114, 36);
             this.Mostrar.TabIndex = 19;
             this.Mostrar.Text = "Mostrar";
             this.Mostrar.UseVisualStyleBackColor = true;
@@ -196,9 +209,10 @@
             // precio
             // 
             this.precio.AutoSize = true;
-            this.precio.Location = new System.Drawing.Point(538, 44);
+            this.precio.Location = new System.Drawing.Point(605, 55);
+            this.precio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.precio.Name = "precio";
-            this.precio.Size = new System.Drawing.Size(67, 20);
+            this.precio.Size = new System.Drawing.Size(78, 24);
             this.precio.TabIndex = 21;
             this.precio.TabStop = true;
             this.precio.Text = "Precio";
@@ -208,9 +222,10 @@
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(538, 18);
+            this.Nombre.Location = new System.Drawing.Point(605, 22);
+            this.Nombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(77, 20);
+            this.Nombre.Size = new System.Drawing.Size(90, 24);
             this.Nombre.TabIndex = 22;
             this.Nombre.TabStop = true;
             this.Nombre.Text = "Nombre";
@@ -220,9 +235,10 @@
             // color
             // 
             this.color.AutoSize = true;
-            this.color.Location = new System.Drawing.Point(538, 70);
+            this.color.Location = new System.Drawing.Point(605, 88);
+            this.color.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.color.Name = "color";
-            this.color.Size = new System.Drawing.Size(60, 20);
+            this.color.Size = new System.Drawing.Size(71, 24);
             this.color.TabIndex = 23;
             this.color.TabStop = true;
             this.color.Text = "Color";
@@ -231,9 +247,10 @@
             // 
             // Descendente
             // 
-            this.Descendente.Location = new System.Drawing.Point(611, 369);
+            this.Descendente.Location = new System.Drawing.Point(687, 461);
+            this.Descendente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Descendente.Name = "Descendente";
-            this.Descendente.Size = new System.Drawing.Size(118, 29);
+            this.Descendente.Size = new System.Drawing.Size(133, 36);
             this.Descendente.TabIndex = 25;
             this.Descendente.Text = "Descendente";
             this.Descendente.UseVisualStyleBackColor = true;
@@ -241,9 +258,10 @@
             // 
             // Ascendnte
             // 
-            this.Ascendnte.Location = new System.Drawing.Point(611, 404);
+            this.Ascendnte.Location = new System.Drawing.Point(687, 505);
+            this.Ascendnte.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Ascendnte.Name = "Ascendnte";
-            this.Ascendnte.Size = new System.Drawing.Size(118, 29);
+            this.Ascendnte.Size = new System.Drawing.Size(133, 36);
             this.Ascendnte.TabIndex = 26;
             this.Ascendnte.Text = "Ascendente";
             this.Ascendnte.UseVisualStyleBackColor = true;
@@ -251,17 +269,30 @@
             // 
             // textmodificar
             // 
-            this.textmodificar.Location = new System.Drawing.Point(362, 456);
+            this.textmodificar.Location = new System.Drawing.Point(407, 570);
+            this.textmodificar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textmodificar.Name = "textmodificar";
-            this.textmodificar.Size = new System.Drawing.Size(100, 22);
+            this.textmodificar.Size = new System.Drawing.Size(112, 26);
             this.textmodificar.TabIndex = 15;
             this.textmodificar.TextChanged += new System.EventHandler(this.textmodificar_TextChanged);
             // 
+            // IrPilas
+            // 
+            this.IrPilas.Location = new System.Drawing.Point(568, 290);
+            this.IrPilas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.IrPilas.Name = "IrPilas";
+            this.IrPilas.Size = new System.Drawing.Size(142, 29);
+            this.IrPilas.TabIndex = 28;
+            this.IrPilas.Text = "Ir a pilas";
+            this.IrPilas.UseVisualStyleBackColor = true;
+            this.IrPilas.Click += new System.EventHandler(this.IrPilas_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 623);
+            this.ClientSize = new System.Drawing.Size(834, 779);
+            this.Controls.Add(this.IrPilas);
             this.Controls.Add(this.dginstrumento);
             this.Controls.Add(this.Ascendnte);
             this.Controls.Add(this.Descendente);
@@ -283,6 +314,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -314,6 +346,7 @@
         private System.Windows.Forms.Button Descendente;
         private System.Windows.Forms.Button Ascendnte;
         private System.Windows.Forms.TextBox textmodificar;
+        private System.Windows.Forms.Button IrPilas;
     }
 }
 
