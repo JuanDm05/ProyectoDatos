@@ -649,5 +649,11 @@ namespace ProyectoDatos
         MessageBox.Show("Hubo un error al ordenar los instrumentos: " + ex.Message);
     }
 }
+
+        private void IrPilas_Click(object sender, EventArgs e)
+        {
+            Pila pila = new Pila();
+            pila.Show();
+        }
     }
 }
