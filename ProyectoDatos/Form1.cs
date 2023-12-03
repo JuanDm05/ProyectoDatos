@@ -654,5 +654,11 @@ namespace ProyectoDatos
             Pila pila = new Pila();
             pila.Show();
         }
+
+        private void IrColas_Click(object sender, EventArgs e)
+        {
+            Colas cola = new Colas();
+            cola.Show();
+        }
     }
 }

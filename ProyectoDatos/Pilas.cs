@@ -16,7 +16,7 @@ namespace ProyectoDatos
             cima = null;
         }
 
-        public void Insertar(MInstrumentos mInstrumentos)
+        public void Apilar(MInstrumentos mInstrumentos)
         {
             Nodo Nuevo = new Nodo(mInstrumentos);
             Nuevo.Siguiente = cima;
@@ -43,8 +43,8 @@ namespace ProyectoDatos
         {
             Pilas pilaAuxiliar = new Pilas();
             bool encontrado = false;
+            // Movemos los datos en auxiliar para no perder los originales
 
-            // Busca el elemento a modificar y almacena los elementos anteriores en la pila auxiliar
             while (cima != null)
             {
                 if (cima.Datos.Id == id)
@@ -54,13 +54,12 @@ namespace ProyectoDatos
                     break;
                 }
 
-                pilaAuxiliar.Insertar(Pop());
+                pilaAuxiliar.Apilar(Pop());
             }
-
-            // Vuelve a colocar los elementos anteriores en la pila principal
+            // Regresamos los datos
             while (pilaAuxiliar.cima != null)
             {
-                Insertar(pilaAuxiliar.Pop());
+                Apilar(pilaAuxiliar.Pop());
             }
 
             return encontrado;
@@ -79,7 +78,7 @@ namespace ProyectoDatos
                     Nodo auxNodo = cima;
                     while (auxNodo != nodoActual)
                     {
-                        pilaAuxiliar.Insertar(auxNodo.Datos);
+                        pilaAuxiliar.Apilar(auxNodo.Datos);
                         auxNodo = auxNodo.Siguiente;
                     }
 
@@ -88,39 +87,11 @@ namespace ProyectoDatos
                     return auxNodo.Datos;
                 }
 
-                pilaAuxiliar.Insertar(nodoActual.Datos);
+                pilaAuxiliar.Apilar(nodoActual.Datos);
                 nodoActual = nodoActual.Siguiente;
 
             }
             return null;
-        }
-
-        public bool BuscarEliminar(int id)
-        {
-            Nodo nodoActual = cima;
-            Pilas pilaAuxiliar = new Pilas();
-
-            while (nodoActual != null)
-            {
-                if (nodoActual.Datos.Id == id)
-                {
-                    Nodo auxNodo = cima;
-                    while (auxNodo != nodoActual)
-                    {
-                        pilaAuxiliar.Insertar(auxNodo.Datos);
-                        auxNodo = auxNodo.Siguiente;
-                    }
-
-                    cima = nodoActual.Siguiente;
-
-                    return true;
-                }
-
-                pilaAuxiliar.Insertar(nodoActual.Datos);
-                nodoActual = nodoActual.Siguiente;
-
-            }
-            return false;
         }
 
         public MInstrumentos Pop()
@@ -136,23 +107,28 @@ namespace ProyectoDatos
         }
 
 
-        public bool Eliminar(int id)
+        public bool Desapilar(int id)
         {
             Pilas pilaAuxiliar = new Pilas();
+            // Buscamos el dato en auxiliar para no perder los originales
 
             while (cima != null && cima.Datos.Id != id)
             {
-                pilaAuxiliar.Insertar(Pop());
+                pilaAuxiliar.Apilar(Pop());
             }
+
+            //Si esta entra aqui
 
             if (cima != null && cima.Datos.Id == id)
             {
                 Pop();
             }
 
+            // Regresamos los datos
+
             while (pilaAuxiliar.cima != null)
             {
-                Insertar(pilaAuxiliar.Pop());
+                Apilar(pilaAuxiliar.Pop());
             }
 
             return cima != null;
@@ -174,10 +150,10 @@ namespace ProyectoDatos
 
                 while (pilaAuxiliar.cima != null && temp.Precio < pilaAuxiliar.cima.Datos.Precio)
                 {
-                    Insertar(pilaAuxiliar.Pop());
+                    Apilar(pilaAuxiliar.Pop());
                 }
 
-                pilaAuxiliar.Insertar(temp);
+                pilaAuxiliar.Apilar(temp);
             }
 
             cima = pilaAuxiliar.cima;
@@ -193,10 +169,10 @@ namespace ProyectoDatos
 
                 while (pilaAuxiliar.cima != null && temp.Precio > pilaAuxiliar.cima.Datos.Precio)
                 {
-                    Insertar(pilaAuxiliar.Pop());
+                    Apilar(pilaAuxiliar.Pop());
                 }
 
-                pilaAuxiliar.Insertar(temp);
+                pilaAuxiliar.Apilar(temp);
             }
 
             cima = pilaAuxiliar.cima;

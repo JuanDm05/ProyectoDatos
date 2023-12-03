@@ -1,6 +1,5 @@
 ﻿using ProyectoDatos.Modelos;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +11,13 @@ using System.Windows.Forms;
 
 namespace ProyectoDatos
 {
-    public partial class Pila : Form
+    public partial class Colas : Form
     {
         int IdClass = 0;
 
-        Pilas pila = new Pilas();
+        Cola Cola = new Cola();
 
-        public Pila()
+        public Colas()
         {
             InitializeComponent();
             InicializarDataGridView();
@@ -30,6 +29,96 @@ namespace ProyectoDatos
             dginstrumento.Columns.Add("Nombre", "Nombre");
             dginstrumento.Columns.Add("Precio", "Precio");
             dginstrumento.Columns.Add("Color", "Color");
+        }
+
+        private void MostrarEnDataGridView()
+        {
+            dginstrumento.Rows.Clear();
+
+            Nodo actual = Cola.Principio;
+
+            while (actual != null)
+            {
+                dginstrumento.Rows.Add(actual.Datos.Id, actual.Datos.Nombre, actual.Datos.Precio, actual.Datos.Color);
+                actual = actual.Siguiente;
+            }
+        }
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textnombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textprecio_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textcolor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Nombre_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void precio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void color_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            if (Nombre.Checked)
+            {
+                BuscarPorNombre();
+            }
+            else if (precio.Checked)
+            {
+                BuscarPorPrecio();
+            }
+            else
+            {
+                BuscarPorColor();
+            }
+        }
+
+        private void Decendente_Click(object sender, EventArgs e)
+        {
+            Cola.Descendente();
+            MostrarEnDataGridView();
+        }
+
+        private void Ascendente_Click(object sender, EventArgs e)
+        {
+            Cola.Ascendente();
+            MostrarEnDataGridView();
         }
 
         private void btnguardar_Click(object sender, EventArgs e)
@@ -51,24 +140,11 @@ namespace ProyectoDatos
                 Color = color
             };
 
-            pila.Apilar(nuevoInstrumento);
+            Cola.Encolar(nuevoInstrumento);
             MostrarEnDataGridView();
             textnombre.Text = string.Empty;
             textprecio.Text = string.Empty;
             textcolor.Text = string.Empty;
-        }
-
-        private void MostrarEnDataGridView()
-        {
-            dginstrumento.Rows.Clear();
-
-            Nodo actual = pila.cima;
-
-            while (actual != null)
-            {
-                dginstrumento.Rows.Add(actual.Datos.Id, actual.Datos.Nombre, actual.Datos.Precio, actual.Datos.Color);
-                actual = actual.Siguiente;
-            }
         }
 
         private void btnmodificar_Click(object sender, EventArgs e)
@@ -99,7 +175,7 @@ namespace ProyectoDatos
                         Color = nuevoColor
                     };
 
-                    bool modificado = pila.Modificar(idModificar, instrumentoModificado);
+                    bool modificado = Cola.Modificar(idModificar, instrumentoModificado);
 
                     if (modificado)
                     {
@@ -135,7 +211,7 @@ namespace ProyectoDatos
                 {
                     int idEliminar = Convert.ToInt32(dginstrumento.Rows[rowIndex].Cells["ID"].Value);
 
-                    bool eliminado = pila.Desapilar(idEliminar);
+                    bool eliminado = Cola.Desencolar(idEliminar);
 
                     if (eliminado)
                     {
@@ -167,95 +243,11 @@ namespace ProyectoDatos
         {
             LimpiarCampos();
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textnombre_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textprecio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textcolor_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textbuscar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Nombre_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void precio_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void color_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnbuscar_Click(object sender, EventArgs e)
-        {
-            if (Nombre.Checked)
-            {
-                BuscarPorNombre();
-            }
-            else if (precio.Checked)
-            {
-                BuscarPorPrecio();
-            }
-            else
-            {
-                BuscarPorColor();
-            }
-        }
-
-        private void Descendente_Click(object sender, EventArgs e)
-        {
-            pila.Descendente();
-            MostrarEnDataGridView();
-        }
-
-        private void Ascendnte_Click(object sender, EventArgs e)
-        {
-            pila.Ascendente();
-            MostrarEnDataGridView();
-        }
-
-        private void dginstrumento_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void BuscarPorNombre()
         {
             string nombreABuscar = textbuscar.Text;
 
-            MInstrumentos instrumentoEncontrado = pila.Buscar(nombreABuscar);
+            MInstrumentos instrumentoEncontrado = Cola.Buscar(nombreABuscar);
 
             if (instrumentoEncontrado != null)
             {
@@ -267,6 +259,7 @@ namespace ProyectoDatos
                 MessageBox.Show("No se encontró un instrumento con el nombre indicado.");
             }
         }
+
         private void BuscarPorPrecio()
         {
             double precioABuscar;
@@ -277,7 +270,7 @@ namespace ProyectoDatos
             }
 
             dginstrumento.Rows.Clear();
-            Nodo actual = pila.cima;
+            Nodo actual = Cola.Principio;
             bool encontrado = false;
 
             while (actual != null)
@@ -300,7 +293,7 @@ namespace ProyectoDatos
             string colorABuscar = textbuscar.Text.Trim();
 
             dginstrumento.Rows.Clear();
-            Nodo actual = pila.cima;
+            Nodo actual = Cola.Principio;
             bool encontrado = false;
 
             while (actual != null)
@@ -329,17 +322,8 @@ namespace ProyectoDatos
 
             dginstrumento.Rows.Clear();
 
-            pila.Limpiar();
+            Cola.Limpiar();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Pila_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
