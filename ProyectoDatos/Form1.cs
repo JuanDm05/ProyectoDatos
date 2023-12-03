@@ -10,7 +10,6 @@ namespace ProyectoDatos
     public partial class Form1 : Form
     {
         int IdClass = 0;
-        int buscar = 0;
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 

@@ -62,7 +62,7 @@ namespace ProyectoDatos
         {
             dginstrumento.Rows.Clear();
 
-            Nodo actual = pila.Primero;
+            Nodo actual = pila.cima;
 
             while (actual != null)
             {
@@ -91,7 +91,6 @@ namespace ProyectoDatos
                     }
                     string nuevoColor = textcolor.Text;
 
-                    // Crear un nuevo objeto MInstrumentos con los valores modificados
                     MInstrumentos instrumentoModificado = new MInstrumentos
                     {
                         Id = idModificar,
@@ -100,7 +99,6 @@ namespace ProyectoDatos
                         Color = nuevoColor
                     };
 
-                    // Llamar al método de modificación en tu lista enlazada
                     bool modificado = pila.Modificar(idModificar, instrumentoModificado);
 
                     if (modificado)
@@ -162,13 +160,13 @@ namespace ProyectoDatos
 
         private void Mostrar_Click(object sender, EventArgs e)
         {
+            MostrarEnDataGridView();
         }
 
         private void Limpiar_Click(object sender, EventArgs e)
         {
+            LimpiarCampos();
         }
-
-
 
         private void label2_Click(object sender, EventArgs e)
         {
@@ -238,12 +236,14 @@ namespace ProyectoDatos
 
         private void Descendente_Click(object sender, EventArgs e)
         {
-
+            pila.Descendente();
+            MostrarEnDataGridView();
         }
 
         private void Ascendnte_Click(object sender, EventArgs e)
         {
-
+            pila.Ascendente();
+            MostrarEnDataGridView();
         }
 
         private void dginstrumento_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -277,7 +277,7 @@ namespace ProyectoDatos
             }
 
             dginstrumento.Rows.Clear();
-            Nodo actual = pila.Primero;
+            Nodo actual = pila.cima;
             bool encontrado = false;
 
             while (actual != null)
@@ -300,7 +300,7 @@ namespace ProyectoDatos
             string colorABuscar = textbuscar.Text.Trim();
 
             dginstrumento.Rows.Clear();
-            Nodo actual = pila.Primero;
+            Nodo actual = pila.cima;
             bool encontrado = false;
 
             while (actual != null)
@@ -319,5 +319,18 @@ namespace ProyectoDatos
             }
 
         }
+
+        private void LimpiarCampos()
+        {
+            textnombre.Text = string.Empty;
+            textprecio.Text = string.Empty;
+            textcolor.Text = string.Empty;
+            textbuscar.Text = string.Empty;
+
+            dginstrumento.Rows.Clear();
+
+            pila.Limpiar();
+        }
+
     }
 }

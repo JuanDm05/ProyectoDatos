@@ -304,7 +304,6 @@ namespace ProyectoDatos
 
             // Restablecer el arreglo de instrumentos y el contador
             lista.LimpiarLista(); // Puedes implementar un método para limpiar la lista en tu clase Listas si es necesario
-            IdClass = 0; // Reiniciar el contador de ID o cualquier otra variable de control que uses
         }
 
         private void Nombre_CheckedChanged(object sender, EventArgs e)
