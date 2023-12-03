@@ -50,6 +50,7 @@
             this.Ascendnte = new System.Windows.Forms.Button();
             this.textmodificar = new System.Windows.Forms.TextBox();
             this.IrPilas = new System.Windows.Forms.Button();
+            this.IrColas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,7 +187,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(655, 346);
+            this.Limpiar.Location = new System.Drawing.Point(697, 394);
             this.Limpiar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(114, 36);
@@ -197,7 +198,7 @@
             // 
             // Mostrar
             // 
-            this.Mostrar.Location = new System.Drawing.Point(498, 346);
+            this.Mostrar.Location = new System.Drawing.Point(540, 394);
             this.Mostrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Mostrar.Name = "Mostrar";
             this.Mostrar.Size = new System.Drawing.Size(114, 36);
@@ -278,7 +279,7 @@
             // 
             // IrPilas
             // 
-            this.IrPilas.Location = new System.Drawing.Point(568, 290);
+            this.IrPilas.Location = new System.Drawing.Point(568, 272);
             this.IrPilas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.IrPilas.Name = "IrPilas";
             this.IrPilas.Size = new System.Drawing.Size(142, 29);
@@ -287,11 +288,23 @@
             this.IrPilas.UseVisualStyleBackColor = true;
             this.IrPilas.Click += new System.EventHandler(this.IrPilas_Click);
             // 
+            // IrColas
+            // 
+            this.IrColas.Location = new System.Drawing.Point(568, 309);
+            this.IrColas.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.IrColas.Name = "IrColas";
+            this.IrColas.Size = new System.Drawing.Size(142, 29);
+            this.IrColas.TabIndex = 29;
+            this.IrColas.Text = "Ir a colas";
+            this.IrColas.UseVisualStyleBackColor = true;
+            this.IrColas.Click += new System.EventHandler(this.IrColas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(834, 779);
+            this.Controls.Add(this.IrColas);
             this.Controls.Add(this.IrPilas);
             this.Controls.Add(this.dginstrumento);
             this.Controls.Add(this.Ascendnte);
@@ -347,6 +360,7 @@
         private System.Windows.Forms.Button Ascendnte;
         private System.Windows.Forms.TextBox textmodificar;
         private System.Windows.Forms.Button IrPilas;
+        private System.Windows.Forms.Button IrColas;
     }
 }
 
