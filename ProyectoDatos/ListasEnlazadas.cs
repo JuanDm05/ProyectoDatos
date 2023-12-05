@@ -92,7 +92,7 @@ namespace ProyectoDatos
             }
         }
 
- 
+
 
         private void btnmodificar_Click(object sender, EventArgs e)
         {
@@ -205,7 +205,7 @@ namespace ProyectoDatos
 
         private void dginstrumento_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-          
+
         }
 
         private void ListasEnlazadas_Load(object sender, EventArgs e)
@@ -231,15 +231,15 @@ namespace ProyectoDatos
 
         }
 
-       
-    
+
+
 
         private void textbuscar_TextChanged(object sender, EventArgs e)
         {
         }
-    
-       
-     
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -329,7 +329,6 @@ namespace ProyectoDatos
 
             // Restablecer el arreglo de instrumentos y el contador
             lista.LimpiarLista(); // Puedes implementar un método para limpiar la lista en tu clase Listas si es necesario
-            IdClass = 0; // Reiniciar el contador de ID o cualquier otra variable de control que uses
         }
 
         private void Nombre_CheckedChanged(object sender, EventArgs e)
@@ -434,6 +433,129 @@ namespace ProyectoDatos
             {
                 BuscarPorColor();
             }
+        }
+
+        private void btnGuardarInicio_Click(object sender, EventArgs e)
+        {
+            string[] temp = new string[3];
+            temp[0] = textnombre.Text;
+            temp[1] = textprecio.Text;
+            temp[2] = textcolor.Text;
+
+            if (temp[0] == "" || temp[1] == "" || temp[2] == "")
+            {
+                MessageBox.Show("No deje ningún espacio vacío");
+            }
+            else
+            {
+                string nombre = textnombre.Text;
+                double precio;
+                if (!double.TryParse(textprecio.Text, out precio))
+                {
+                    MessageBox.Show("Ingrese un precio válido.");
+                    return;
+                }
+                string color = textcolor.Text;
+
+                MInstrumentos nuevoInstrumento = new MInstrumentos
+                {
+                    Id = ++IdClass,
+                    Nombre = nombre,
+                    Precio = precio,
+                    Color = color
+                };
+
+                lista.insertarAlInicio(nuevoInstrumento); // Llamada al método de inserción al inicio
+                MostrarEnDataGridView();
+                textnombre.Text = string.Empty;
+                textprecio.Text = string.Empty;
+                textcolor.Text = string.Empty;
+            }
+        }
+        
+
+        private void btnGuardarMedio_Click(object sender, EventArgs e)
+        {
+            string[] temp = new string[3];
+            temp[0] = textnombre.Text;
+            temp[1] = textprecio.Text;
+            temp[2] = textcolor.Text;
+
+            if (temp[0] == "" || temp[1] == "" || temp[2] == "")
+            {
+                MessageBox.Show("No deje ningún espacio vacío");
+            }
+            else
+            {
+                string nombre = textnombre.Text;
+                double precio;
+                if (!double.TryParse(textprecio.Text, out precio))
+                {
+                    MessageBox.Show("Ingrese un precio válido.");
+                    return;
+                }
+                string color = textcolor.Text;
+
+                MInstrumentos nuevoInstrumento = new MInstrumentos
+                {
+                    Id = ++IdClass,
+                    Nombre = nombre,
+                    Precio = precio,
+                    Color = color
+                };
+
+                int posicion = lista.ObtenerPosicionMedio(); 
+
+                bool insertado = lista.insertarEnMedio(posicion, nuevoInstrumento);
+
+                if (insertado)
+                {
+                    MostrarEnDataGridView();
+                    textnombre.Text = string.Empty;
+                    textprecio.Text = string.Empty;
+                    textcolor.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo insertar en la posición indicada.");
+                }
+            }
+        }
+
+
+
+        private void btnGuardarFinal_Click(object sender, EventArgs e)
+        {
+            string nombre = textnombre.Text;
+            double precio;
+            if (!double.TryParse(textprecio.Text, out precio))
+            {
+                MessageBox.Show("Ingrese un precio válido.");
+                return;
+            }
+            string color = textcolor.Text;
+
+            MInstrumentos nuevoInstrumento = new MInstrumentos
+            {
+                Id = ++IdClass,
+                Nombre = nombre,
+                Precio = precio,
+                Color = color
+            };
+
+            lista.insertarAlFinal(nuevoInstrumento);
+            MostrarEnDataGridView();
+            textnombre.Text = string.Empty;
+            textprecio.Text = string.Empty;
+            textcolor.Text = string.Empty;
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            menu.Show();
+            this.Close(); // Cierra la ventana actual
+
         }
     }
 }

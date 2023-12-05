@@ -48,6 +48,12 @@
             this.precio = new System.Windows.Forms.RadioButton();
             this.textbuscar = new System.Windows.Forms.TextBox();
             this.btnbuscar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnGuardarFinal = new System.Windows.Forms.Button();
+            this.btnGuardarMedio = new System.Windows.Forms.Button();
+            this.btnGuardarInicio = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,7 +164,7 @@
             // 
             // Decendente
             // 
-            this.Decendente.Location = new System.Drawing.Point(571, 150);
+            this.Decendente.Location = new System.Drawing.Point(624, 326);
             this.Decendente.Name = "Decendente";
             this.Decendente.Size = new System.Drawing.Size(139, 26);
             this.Decendente.TabIndex = 24;
@@ -168,7 +174,7 @@
             // 
             // Ascendente
             // 
-            this.Ascendente.Location = new System.Drawing.Point(571, 196);
+            this.Ascendente.Location = new System.Drawing.Point(624, 358);
             this.Ascendente.Name = "Ascendente";
             this.Ascendente.Size = new System.Drawing.Size(139, 26);
             this.Ascendente.TabIndex = 25;
@@ -250,11 +256,77 @@
             this.btnbuscar.UseVisualStyleBackColor = true;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click_1);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(644, 295);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 16);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "Ordenar (Precio)";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(412, 72);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 16);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Formas de insertar";
+            // 
+            // btnGuardarFinal
+            // 
+            this.btnGuardarFinal.Location = new System.Drawing.Point(434, 215);
+            this.btnGuardarFinal.Name = "btnGuardarFinal";
+            this.btnGuardarFinal.Size = new System.Drawing.Size(75, 47);
+            this.btnGuardarFinal.TabIndex = 40;
+            this.btnGuardarFinal.Text = "Guardar Final";
+            this.btnGuardarFinal.UseVisualStyleBackColor = true;
+            this.btnGuardarFinal.Click += new System.EventHandler(this.btnGuardarFinal_Click);
+            // 
+            // btnGuardarMedio
+            // 
+            this.btnGuardarMedio.Location = new System.Drawing.Point(434, 150);
+            this.btnGuardarMedio.Name = "btnGuardarMedio";
+            this.btnGuardarMedio.Size = new System.Drawing.Size(75, 59);
+            this.btnGuardarMedio.TabIndex = 41;
+            this.btnGuardarMedio.Text = "Guardar Medio";
+            this.btnGuardarMedio.UseVisualStyleBackColor = true;
+            this.btnGuardarMedio.Click += new System.EventHandler(this.btnGuardarMedio_Click);
+            // 
+            // btnGuardarInicio
+            // 
+            this.btnGuardarInicio.Location = new System.Drawing.Point(434, 93);
+            this.btnGuardarInicio.Name = "btnGuardarInicio";
+            this.btnGuardarInicio.Size = new System.Drawing.Size(75, 51);
+            this.btnGuardarInicio.TabIndex = 42;
+            this.btnGuardarInicio.Text = "Guardar Inicio";
+            this.btnGuardarInicio.UseVisualStyleBackColor = true;
+            this.btnGuardarInicio.Click += new System.EventHandler(this.btnGuardarInicio_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(630, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 23);
+            this.button1.TabIndex = 43;
+            this.button1.Text = "Volver menu";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // ListasEnlazadas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::ProyectoDatos.Properties.Resources.draw;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(775, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGuardarInicio);
+            this.Controls.Add(this.btnGuardarMedio);
+            this.Controls.Add(this.btnGuardarFinal);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.color);
             this.Controls.Add(this.Nombre);
             this.Controls.Add(this.precio);
@@ -306,5 +378,11 @@
         private System.Windows.Forms.RadioButton precio;
         private System.Windows.Forms.TextBox textbuscar;
         private System.Windows.Forms.Button btnbuscar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnGuardarFinal;
+        private System.Windows.Forms.Button btnGuardarMedio;
+        private System.Windows.Forms.Button btnGuardarInicio;
+        private System.Windows.Forms.Button button1;
     }
 }

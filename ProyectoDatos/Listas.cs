@@ -117,6 +117,94 @@ namespace ProyectoDatos
 
             return null; // Si no se encuentra, retorna null
         }
+        public void insertarAlInicio(MInstrumentos instrumentos)
+        {
+            Nodo Nuevo = new Nodo(instrumentos);
+
+            if (Primero == null)
+            {
+                Primero = Nuevo;
+                Ultimo = Nuevo;
+            }
+            else
+            {
+                Nuevo.Siguiente = Primero;
+                Primero = Nuevo;
+            }
+        }
+        public bool insertarEnMedio(int posicion, MInstrumentos instrumento)
+        {
+            if (posicion < 0)
+                return false; // Posición inválida
+
+            Nodo nuevoNodo = new Nodo(instrumento);
+            Nodo actual = Primero;
+            Nodo anterior = null;
+            int contador = 0;
+
+            // Moverse a la posición deseada o al final de la lista
+            while (actual != null && contador < posicion)
+            {
+                anterior = actual;
+                actual = actual.Siguiente;
+                contador++;
+            }
+
+            if (contador != posicion)
+                return false; // La posición excede la longitud actual de la lista
+
+            // Insertar el nuevo nodo en la posición deseada
+            if (anterior == null)
+            {
+                nuevoNodo.Siguiente = Primero;
+                Primero = nuevoNodo;
+                if (Ultimo == null)
+                    Ultimo = Primero;
+            }
+            else
+            {
+                nuevoNodo.Siguiente = actual;
+                anterior.Siguiente = nuevoNodo;
+                if (nuevoNodo.Siguiente == null)
+                    Ultimo = nuevoNodo;
+            }
+
+            return true; // Elemento insertado correctamente
+        }
+        public void insertarAlFinal(MInstrumentos instrumento)
+        {
+            Nodo nuevoNodo = new Nodo(instrumento);
+
+            if (Ultimo == null)
+            {
+                Primero = nuevoNodo;
+                Ultimo = nuevoNodo;
+            }
+            else
+            {
+                Ultimo.Siguiente = nuevoNodo;
+                Ultimo = nuevoNodo;
+            }
+        }
+        public int ObtenerLongitudLista()
+        {
+            int longitud = 0;
+            Nodo actual = Primero;
+
+            while (actual != null)
+            {
+                longitud++;
+                actual = actual.Siguiente;
+            }
+
+            return longitud;
+        }
+
+        public int ObtenerPosicionMedio()
+        {
+            int longitudLista = ObtenerLongitudLista(); // Necesitas implementar este método para obtener la longitud de tu lista
+            return longitudLista / 2;
+        }
 
     }
 
