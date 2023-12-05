@@ -49,6 +49,8 @@
             this.Descendente = new System.Windows.Forms.Button();
             this.Ascendnte = new System.Windows.Forms.Button();
             this.textmodificar = new System.Windows.Forms.TextBox();
+            this.IrPilas = new System.Windows.Forms.Button();
+            this.IrColas = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dginstrumento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,7 +167,7 @@
             // 
             // irlistas
             // 
-            this.irlistas.Location = new System.Drawing.Point(505, 206);
+            this.irlistas.Location = new System.Drawing.Point(505, 188);
             this.irlistas.Name = "irlistas";
             this.irlistas.Size = new System.Drawing.Size(126, 23);
             this.irlistas.TabIndex = 17;
@@ -175,7 +177,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(582, 277);
+            this.Limpiar.Location = new System.Drawing.Point(620, 315);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(101, 29);
             this.Limpiar.TabIndex = 18;
@@ -185,7 +187,7 @@
             // 
             // Mostrar
             // 
-            this.Mostrar.Location = new System.Drawing.Point(443, 277);
+            this.Mostrar.Location = new System.Drawing.Point(480, 315);
             this.Mostrar.Name = "Mostrar";
             this.Mostrar.Size = new System.Drawing.Size(101, 29);
             this.Mostrar.TabIndex = 19;
@@ -257,11 +259,34 @@
             this.textmodificar.TabIndex = 15;
             this.textmodificar.TextChanged += new System.EventHandler(this.textmodificar_TextChanged);
             // 
+            // IrPilas
+            // 
+            this.IrPilas.Location = new System.Drawing.Point(505, 218);
+            this.IrPilas.Name = "IrPilas";
+            this.IrPilas.Size = new System.Drawing.Size(126, 23);
+            this.IrPilas.TabIndex = 28;
+            this.IrPilas.Text = "Ir a pilas";
+            this.IrPilas.UseVisualStyleBackColor = true;
+            this.IrPilas.Click += new System.EventHandler(this.IrPilas_Click);
+            // 
+            // IrColas
+            // 
+            this.IrColas.Location = new System.Drawing.Point(505, 247);
+            this.IrColas.Name = "IrColas";
+            this.IrColas.Size = new System.Drawing.Size(126, 23);
+            this.IrColas.TabIndex = 29;
+            this.IrColas.Text = "Ir a colas";
+            this.IrColas.UseVisualStyleBackColor = true;
+            this.IrColas.Click += new System.EventHandler(this.IrColas_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 623);
+            this.BackgroundImage = global::ProyectoDatos.Properties.Resources.draw;
+            this.ClientSize = new System.Drawing.Size(729, 623);
+            this.Controls.Add(this.IrColas);
+            this.Controls.Add(this.IrPilas);
             this.Controls.Add(this.dginstrumento);
             this.Controls.Add(this.Ascendnte);
             this.Controls.Add(this.Descendente);
@@ -314,6 +339,8 @@
         private System.Windows.Forms.Button Descendente;
         private System.Windows.Forms.Button Ascendnte;
         private System.Windows.Forms.TextBox textmodificar;
+        private System.Windows.Forms.Button IrPilas;
+        private System.Windows.Forms.Button IrColas;
     }
 }
 

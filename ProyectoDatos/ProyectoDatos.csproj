@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cola.cs" />
+    <Compile Include="Colas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Colas.Designer.cs">
+      <DependentUpon>Colas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,15 +66,37 @@
     <Compile Include="ListasEnlazadas.Designer.cs">
       <DependentUpon>ListasEnlazadas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modelos\MInstrumentos.cs" />
     <Compile Include="Nodo.cs" />
+    <Compile Include="Pila.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pila.Designer.cs">
+      <DependentUpon>Pila.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pilas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Colas.resx">
+      <DependentUpon>Colas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListasEnlazadas.resx">
       <DependentUpon>ListasEnlazadas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pila.resx">
+      <DependentUpon>Pila.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -77,6 +106,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -91,6 +121,38 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\matriz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\matriz %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\matriz %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ordenar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\libros.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\violin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\violina.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\as.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\draw.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\borrar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

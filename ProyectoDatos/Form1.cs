@@ -10,7 +10,6 @@ namespace ProyectoDatos
     public partial class Form1 : Form
     {
         int IdClass = 0;
-        int buscar = 0;
         private MInstrumentos[] instrumentos = new MInstrumentos[10];
         private int contadorInstrumentos = 0;
 
@@ -649,5 +648,17 @@ namespace ProyectoDatos
         MessageBox.Show("Hubo un error al ordenar los instrumentos: " + ex.Message);
     }
 }
+
+        private void IrPilas_Click(object sender, EventArgs e)
+        {
+            Pila pila = new Pila();
+            pila.Show();
+        }
+
+        private void IrColas_Click(object sender, EventArgs e)
+        {
+            Colas cola = new Colas();
+            cola.Show();
+        }
     }
 }

@@ -254,7 +254,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::ProyectoDatos.Properties.Resources.draw;
+            this.ClientSize = new System.Drawing.Size(775, 450);
             this.Controls.Add(this.color);
             this.Controls.Add(this.Nombre);
             this.Controls.Add(this.precio);
