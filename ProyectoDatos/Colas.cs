@@ -333,5 +333,10 @@ namespace ProyectoDatos
 
 
         }
+
+        private void dginstrumento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

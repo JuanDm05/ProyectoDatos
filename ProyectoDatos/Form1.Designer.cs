@@ -146,6 +146,7 @@
             // 
             // dginstrumento
             // 
+            this.dginstrumento.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dginstrumento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dginstrumento.Location = new System.Drawing.Point(5, 349);
             this.dginstrumento.Name = "dginstrumento";

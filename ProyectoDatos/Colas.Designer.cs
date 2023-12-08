@@ -158,6 +158,7 @@
             // 
             // dginstrumento
             // 
+            this.dginstrumento.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.dginstrumento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dginstrumento.Location = new System.Drawing.Point(24, 276);
             this.dginstrumento.Name = "dginstrumento";
@@ -165,6 +166,7 @@
             this.dginstrumento.RowTemplate.Height = 24;
             this.dginstrumento.Size = new System.Drawing.Size(593, 272);
             this.dginstrumento.TabIndex = 42;
+            this.dginstrumento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dginstrumento_CellContentClick);
             // 
             // btnmodificar
             // 
